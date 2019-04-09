@@ -1,4 +1,12 @@
-.hello { 
+@font-face {
+	font-family: 'testFont';
+	src: url('./OpenSans-Bold-webfont.woff') format('woff'), url('./OpenSans-BoldItalic-webfont.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+.hello {
 	color: red;
+	font-family: 'testFont';
 	background: url('./vscode.png');
 }

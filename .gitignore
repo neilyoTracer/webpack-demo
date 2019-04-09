@@ -4,6 +4,11 @@
 /target/www/**
 /src/test/javascript/coverage/
 
+# compiled output
+/dist
+/tmp
+/out-tsc
+
 ######################
 # Node
 ######################
