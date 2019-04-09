@@ -9,7 +9,7 @@ function component() {
     let btn = document.createElement('button');
 
 	// lodash, 现在由此脚本导入
-	element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+	element.innerHTML = _.join(['Hello', 'webpack', '!!!!'], ' ');
 	// element.classList.add('hello');
 
 	// 将图像添加到我们已经存在的div中
