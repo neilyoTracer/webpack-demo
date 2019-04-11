@@ -1,14 +1,17 @@
 {
 	"name": "webpack-demo",
+	"sideEffects": [
+		"*.css"
+	],
 	"version": "1.0.0",
 	"description": "",
 	"private": true,
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"watch": "webpack --watch",
-		"start": "webpack-dev-server --open --hotOnly",
+		"start": "webpack-dev-server --config webpack/webpack.dev.js --open --hot",
 		"server": "node server.js",
-		"build": "webpack"
+		"build": "webpack --config webpack/webpack.prod.js --optimize-minimize"
 	},
 	"keywords": [],
 	"author": "",
@@ -25,6 +28,7 @@
 		"webpack-cli": "^3.3.0",
 		"webpack-dev-middleware": "^3.6.2",
 		"webpack-dev-server": "^3.3.0",
+		"webpack-merge": "^4.2.1",
 		"xml-loader": "^1.2.1"
 	},
 	"dependencies": {

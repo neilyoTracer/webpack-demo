@@ -4,7 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-	mode:'development',
 	entry: {
 		app: './src/index.js'
 		// print: './src/print.js'
@@ -42,7 +41,7 @@ module.exports = {
 			}
 		]
 	},
-	devtool:'inline-source-map',
+	devtool:'inline-source-map', //使用 source map 
 	devServer:{
 		contentBase: './dist',
 		hot: true
@@ -53,7 +52,12 @@ module.exports = {
 			title: '热模块替换'
 		}),
 		new webpack.HotModuleReplacementPlugin()
-	]
+	],
+	/* mode:'development',
+	optimization: { 
+		usedExports: true
+	} */
+	mode: 'production'
 }
 
 /**
@@ -62,8 +66,12 @@ module.exports = {
  * 2. htmlwebpackplugin -- 管理输出 - 设置 HtmlWebpackPlugin
  * 3. manifest
  * 4. source map 可用选项 -- 开发环境 - 使用source map
- * 5. dev server配置中的 publicPath 以及 webpack-dev-server配置文档 ,模块热替换(hot module replacement)！ -- 开发环境 - 使用webpack-dev-server
+ * 5. dev server配置中的 publicPath 以及 webpack-dev-server配置文档 ,
+ *    模块热替换(hot module replacement)！ -- 开发环境 - 使用webpack-dev-server
+ * 6. React Hot Loader -- 模块热替换 - 其他代码和框架
+ * 7. 还可以在 module.rules 配置选项 中设置 "sideEffects" -- tree shaking - 将文件标记为 side-effect-free(无副作用)
  */
+
 
 
  /**
@@ -74,5 +82,7 @@ module.exports = {
   * 然而它也可以作为一个单独的 package 来使用，
   * 以便根据需求进行更多自定义设置。
   * 
-  * 
+  * 2. 运行 tree shaking 需要 ModuleConcatenationPlugin。
+  * 通过 mode: "production" 可以添加此插件。
+  * 如果你没有使用 mode 设置，记得手动添加 ModuleConcatenationPlugin。
   */
