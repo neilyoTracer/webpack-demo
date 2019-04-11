@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 	mode:'development',
 	entry: {
-		app: './src/index.js',
-		print: './src/print.js'
+		app: './src/index.js'
+		// print: './src/print.js'
 	},
 	output: {
 		// filename: 'main.js',
@@ -43,13 +44,15 @@ module.exports = {
 	},
 	devtool:'inline-source-map',
 	devServer:{
-		contentBase: './dist'
+		contentBase: './dist',
+		hot: true
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: '开发环境'
-		})
+			title: '热模块替换'
+		}),
+		new webpack.HotModuleReplacementPlugin()
 	]
 }
 
