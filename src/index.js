@@ -2,6 +2,7 @@
 import Vscode from './vscode.png';
 import Data from './data.xml'; */
 import _ from 'lodash';
+import Print2 from './print2';
 
 // async function getComponent() { 
 function component() {
@@ -21,6 +22,7 @@ function component() {
 	const br = document.createElement('br');
 	button.innerHTML = 'Click me and look at the console!';
 	element.innerHTML = _.join(['Hello','webpack'], ' ');
+	element.onclick = Print2.bind(null, 'Hello webpack!');
 	element.appendChild(br);
 	element.appendChild(button);
 
@@ -47,3 +49,10 @@ document.body.appendChild(component());
  * 关于其背后原因的更多信息，
  * 请阅读 webpack 4: import() 和 CommonJs
  */
+
+if(module.hot) { 
+	module.hot.accept('./print.js', function() { 
+		console.log('Accept the updated printMe module!');
+		printMe();
+	});
+}
