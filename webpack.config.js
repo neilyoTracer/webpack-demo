@@ -4,12 +4,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: {
-		app: './src/index.js',
-		print: './src/print.js'
+		index: './src/index.js'
+		// print: './src/print.js'
+		// another:'./src/another-module.js'
 	},
 	output: {
 		// filename: 'main.js',
 		filename: '[name].bundle.js',
+		chunkFilename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist')
 	},
 	module: {

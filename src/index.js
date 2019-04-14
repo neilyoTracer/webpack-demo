@@ -1,30 +1,29 @@
-import _ from 'lodash';
-import printMe from './print';
 /* import './style.css';
 import Vscode from './vscode.png';
 import Data from './data.xml'; */
 
-function component() { 
-    let element = document.createElement('div');
-    let btn = document.createElement('button');
+function getComponent() { 
+	return import(/* webpackChunkName: "lodash" */ 'lodash')
+		.then(({ default: _ }) => { 
+			const element = document.createElement('div');
 
-	// lodash, 现在由此脚本导入
-	element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-	// element.classList.add('hello');
+			element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-	// 将图像添加到我们已经存在的div中
-	/* var myIcon = new Image();
-	myIcon.src = Vscode;
-
-    element.appendChild(myIcon);
-    
-    console.log(Data); */
-
-    btn.innerHTML = '点击这里，然后查看console！';
-    btn.onclick = printMe;
-
-    element.appendChild(btn);
-    return element;
+			return element;
+		})
+		.catch(error => 'An error occured while loading the component');
 }
 
-document.body.appendChild(component());
+// document.body.appendChild(component());
+getComponent().then(component => { 
+	document.body.appendChild(component);
+});
+
+/**
+ * 这里我们需要使用 default 的原因是，从 webpack v4 开始，
+ * 在 import CommonJS 模块时，不会再将导入模块解析为 
+ * module.exports 的值，
+ * 而是为 CommonJS 模块创建一个 artificial namespace object(人工命名空间对象)，
+ * 关于其背后原因的更多信息，
+ * 请阅读 webpack 4: import() 和 CommonJs
+ */
