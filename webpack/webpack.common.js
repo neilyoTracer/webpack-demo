@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = { 
 	entry: { 
-		app: './src/index.js'
+		app: './src/index.js',
+		another: './src/another-module.js'
 	},
 	output: { 
 		filename: '[name].bundle.js',
@@ -42,5 +43,10 @@ module.exports = {
 		new HtmlWebpackPlugin({ 
 			title: 'Production'
 		})
-	]
+	],
+	optimization: { 
+		splitChunks: { 
+			chunks: 'all'
+		}
+	}
 }

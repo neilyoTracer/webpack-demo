@@ -1,10 +1,14 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 import printMe from './print';
 import './styles.css';
 import { cube } from './main';
 /* import './style.css';
 import Vscode from './vscode.png';
 import Data from './data.xml'; */
+
+if(process.env.NODE_ENV !== 'production') { 
+	console.log('Looks like we are in development mode!');
+}
 
 function component() { 
     // let element = document.createElement('div');
